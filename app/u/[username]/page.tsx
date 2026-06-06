@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getWrapped } from "@/lib/wrapped";
 import { UserNotFoundError } from "@/lib/github";
 import StoryPlayer from "@/components/StoryPlayer";
+import { recordSearch } from "@/lib/analytics";
 import type { Metadata } from "next";
 
 export async function generateMetadata({
@@ -55,6 +56,7 @@ export default async function WrappedPage({
 
   try {
     const data = await getWrapped(username);
+    await recordSearch(data.stats.username, data.narrative.persona.key);
     return <StoryPlayer data={data} />;
   } catch (err) {
     const notFound = err instanceof UserNotFoundError;
