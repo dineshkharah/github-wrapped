@@ -120,6 +120,8 @@ function buildSlides(data: WrappedData): { key: string; node: React.ReactNode }[
         <img
           src={stats.avatarUrl}
           alt={stats.username}
+          width={96}
+          height={96}
           className="mx-auto h-24 w-24 rounded-full ring-4 ring-white/30"
         />
         <h1 className="mt-6 text-4xl font-bold">{stats.name ?? stats.username}</h1>
